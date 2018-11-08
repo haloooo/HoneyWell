@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body class="hold-transition login-page">
+<div align="center" style="padding-bottom: 10px">
+    <textarea style="width: 50%;height: 100px;" id="code"></textarea>
+
+</div>
+<div>
+    <table border="1px solid">
+        <thead>
+        <tr>
+            <td width="80px">
+                BP/N
+            </td>
+            <td width="115px">
+                Carton ID
+            </td>
+            <td width="115px">
+                Vendor Code
+            </td>
+            <td width="115px">
+                Vendor Name
+            </td>
+            <td width="115px">
+                Vendor P/N
+            </td>
+            <td width="115px">
+                APN
+            </td>
+            <td width="115px">
+                REV
+            </td>
+            <td width="115px">
+                Config
+            </td>
+            <td width="115px">
+                BIN
+            </td>
+            <td width="115px">
+                Build
+            </td>
+            <td width="115px">
+                DESC
+            </td>
+            <td width="115px">
+                Lot NO
+            </td>
+            <td  width="115px">
+                PO No
+            </td>
+            <td width="115px">
+                QTY
+            </td>
+            <td width="115px">
+                Info
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <span id="bp_n"></span>
+            </td>
+            <td>
+                <span id="carton_id"></span>
+            </td>
+            <td>
+                <span id="vendor_code"></span>
+            </td>
+            <td>
+                <span id="vendor_name"></span>
+            </td>
+            <td>
+                <span id="vendor_p_n"></span>
+            </td>
+            <td>
+                <span id="apn"></span>
+            </td>
+            <td>
+                <span id="rev"></span>
+            </td>
+            <td>
+                <span id="config"></span>
+            </td>
+            <td>
+                <span id="bin"></span>
+            </td>
+            <td>
+                <span id="build"></span>
+            </td>
+            <td>
+                <span id="desc"></span>
+            </td>
+            <td>
+                <span id="lot_no"></span>
+            </td>
+            <td>
+                <span id="po_no"></span>
+            </td>
+            <td>
+                <span id="qty"></span>
+            </td>
+            <td>
+                <span id="info"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<script>
+    window.onload = function(e){
+        var code = "";
+        var lastTime,nextTime;
+        var lastCode,nextCode;
+
+        document.onkeypress = function(e) {
+            nextCode = e.which;
+            nextTime = new Date().getTime();
+
+            if(lastCode != null && lastTime != null && nextTime - lastTime <= 30) {
+                code += String.fromCharCode(lastCode);
+            } else if(lastCode != null && lastTime != null && nextTime - lastTime > 100){
+                code = "";
+            }
+            lastCode = nextCode;
+            lastTime = nextTime;
+        };
+        this.onkeypress = function(e){
+            if(e.which == 13){
+                console.log(code);
+                document.getElementById("code").innerText = '';
+                document.getElementById("code").innerText = code;
+                var list = code.split('\\');
+                document.getElementById("bp_n").innerText = list[0];
+                document.getElementById("carton_id").innerText = list[1];
+                document.getElementById("vendor_code").innerText = list[2];
+                document.getElementById("vendor_name").innerText = list[3];
+                document.getElementById("vendor_p_n").innerText = list[4];
+                document.getElementById("apn").innerText = list[5];
+                document.getElementById("rev").innerText = list[6];
+                document.getElementById("config").innerText = list[7];
+                document.getElementById("bin").innerText = list[8];
+                document.getElementById("build").innerText = list[9];
+                document.getElementById("desc").innerText = list[10];
+                document.getElementById("lot_no").innerText = list[11];
+                document.getElementById("po_no").innerText = list[12];
+                document.getElementById("qty").innerText = list[13];
+                document.getElementById("info").innerText = list[14];
+                code = "";
+            }
+        }
+    }
+</script>
+</body>
+</html>
